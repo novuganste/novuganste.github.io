@@ -484,18 +484,18 @@
           <div class="col-lg-10">
             <div class="row no-gutters block-9 justify-content-center align-items-center">
               <div class="col-md-6 d-flex justify-content-center">
-              <form id="whatsappForm" class="bg-light p-4 p-md-5 contact-form w-100">
+            <form id="whatsappForm" class="bg-light p-4 p-md-5 contact-form w-100">
   <div class="form-group">
-    <input type="text" id="whatsappName" class="form-control" placeholder="Your Name" required>
+    <input type="text" id="name" class="form-control" placeholder="Your Name" required>
   </div>
   <div class="form-group">
-    <input type="email" id="whatsappEmail" class="form-control" placeholder="Your Email" required>
+    <input type="email" id="email" class="form-control" placeholder="Your Email" required>
   </div>
   <div class="form-group">
-    <input type="text" id="whatsappSubject" class="form-control" placeholder="Subject" required>
+    <input type="text" id="subject" class="form-control" placeholder="Subject" required>
   </div>
   <div class="form-group">
-    <textarea id="whatsappMessage" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
+    <textarea id="message" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
   </div>
   <div class="form-group">
     <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
@@ -506,29 +506,29 @@
   document.getElementById("whatsappForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // Ambil nilai dari form
-    const name = document.getElementById("whatsappName").value.trim();
-    const email = document.getElementById("whatsappEmail").value.trim();
-    const subject = document.getElementById("whatsappSubject").value.trim();
-    const message = document.getElementById("whatsappMessage").value.trim();
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
 
-    // Nomor WhatsApp tujuan (ubah sesuai kebutuhan)
-    const whatsappNumber = "6287736543672"; // format internasional
+    const whatsappNumber = "6287736543672"; // +62 tanpa tanda '+'
+    const whatsappURL = "https://wa.me/ " + whatsappNumber;
 
-    // Buat pesan untuk WhatsApp
-    const whatsappText = 
-      `*Halo!* 🤙\n\n` +
-      `Saya *${name}*,\n` +
-      `Email: ${email}\n` +
-      `Subjek: ${subject}\n\n` +
-      `Pesan:\n${message}\n\n` +
-      `Terima kasih! 😊`;
+    const text = 
+`Halo! 🤙
 
-    // Encode agar bisa digunakan di URL
-    const encodedMessage = encodeURIComponent(whatsappText);
+Saya *${name}*, 
+Email: ${email}
+Subjek: ${subject}
 
-    // Arahkan ke WhatsApp
-    window.open(`https://wa.me/ ${whatsappNumber}?text=${encodedMessage}`, "_blank");
+Pesan:
+${message}
+
+Terima kasih! 😊`;
+
+    const encodedText = encodeURIComponent(text);
+    
+    window.open(`${whatsappURL}?text=${encodedText}`, "_blank");
   });
 </script>
               </div>
